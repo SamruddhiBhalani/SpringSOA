@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Http Call out">
+        <div class="slds-p-around_medium">
+            <lightning-button type="brand" label="Http Callout" onclick={httpHandler}></lightning-button>
+        </div>
+    </lightning-card>
+    <lightning-card title="List of Account">
+        <div class="slds-p-around_medium">
+            <lightning-layout>
+                <lightning-layout-item size="2" padding="around-small">
+                    <lightning-combobox name="filterBy" value={filterBy} label="Fileter By" options={FilterByOptions} onchange={filterByHandler}></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="text" label="Filter" onkeyup={filterHandler}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" alignment-bump="left" padding="around-small">
+                    <lightning-combobox name="sortedBy" value={sortedBy} label="Sort By" options={SortByOptions} onchange={sortByHandler}></lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+            <table>
+                <thead>
+                    <tr>
+                        <template for:each={headings} for:item="heading">
+                            <th key={heading}>{heading}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={fileteredData} for:item="data">
+                        <tr key={data.Id}>
+                            <td>{data.Id}</td>
+                            <td>{data.Name}</td>
+                            <td>{data.Type}</td>
+                            <td>{data.Industry}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>
